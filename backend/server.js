@@ -1,29 +1,24 @@
-const express = require('express');
-const dotenv = require('dotenv')
-const products = require('./data/products');
-const connectDB = require('./config/db')
-
-dotenv.config()
-
-connectDB(
-    
-)
+const express = require("express");
 const app = express();
+const dotenv = require("dotenv");
+const connectDB = require("./config/db");
+const productRoutes = require("./routes/productRoutes");
+const {errorHandler, pageNotFound} = require("./middleware/error-handler")
 
-app.get('/', (req, res)=>{
-    res.send('API is running')
-})
+dotenv.config();
 
-app.get('/products', (req, res)=>{
-    res.json(products)
-})
+connectDB();
 
-app.get('/products/:id', (req, res)=>{
-    const product = products.find((p) => p._id === req.params.id)
-    res.json(product)
-})
+app.get("/", (req, res) => {
+  res.send("API is running");
+});
+app.use("/api/products", productRoutes);
 
+app.use(pageNotFound)
+app.use(errorHandler)
 
-
-const PORT = process.env.PORT || 5000
-app.listen(PORT, console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`))
+const PORT = process.env.PORT || 5000;
+app.listen(
+  PORT,
+  console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`)
+);

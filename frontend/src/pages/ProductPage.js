@@ -19,7 +19,7 @@ const ProductPage = () => {
   const [product, setProduct] = useState({})
   useEffect(()=>{
     const fetchProduct = async () =>{
-      const { data } = await axios.get(`/products/${params.id}`)
+      const { data } = await axios.get(`/api/products/${params.id}`)
       setProduct(data)
     }
     fetchProduct()
@@ -43,7 +43,7 @@ const ProductPage = () => {
             <ListGroup.Item>
               <ProductRating
                 value={product.rating}
-                numberOfReviews={`${product.numReviews} reviews`}
+                numberOfReviews={`${product.numberOfReviews} reviews`}
               ></ProductRating>
             </ListGroup.Item>
             <ListGroup.Item>Price: {product.price}</ListGroup.Item>

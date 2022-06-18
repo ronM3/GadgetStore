@@ -17,10 +17,13 @@ const importData = async () => {
     await Product.deleteMany();
     await User.deleteMany();
     const createdUsers = await User.insertMany(users);
+
     const adminUser = createdUsers[0]._id;
+
     const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser };
     });
+
     await Product.insertMany(sampleProducts);
     console.log("Data Imported successfully");
     process.exit();
@@ -43,9 +46,8 @@ const destroyData = async () => {
   }
 };
 
-if(process.argv[2] === '-d'){
-    destroyData()
-}
-else{
-    importData()
+if (process.argv[2] === "-d") {
+  destroyData();
+} else {
+  importData();
 }
