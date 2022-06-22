@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product";
 import { Row, Col } from "react-bootstrap";
-import { listProducts } from "../actions/productAction";
+import { listProducts } from "../redux/actions/productAction";
 import axios from "axios";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorMessage from "../components/ErrorMessage";
@@ -22,7 +22,7 @@ const HomePage = () => {
       {loading ? (
         <LoadingSpinner />
       ) : error ? (
-        <ErrorMessage variant={"danger"}>{error}</ErrorMessage>
+        <ErrorMessage variant={'danger'}>{error}</ErrorMessage>
       ) : (
         <Row>
           {products.map((product) => (
