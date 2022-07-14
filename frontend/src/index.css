@@ -23,3 +23,9 @@ main{
 .icon-header {
   transform: scale(1.3);
 }
+.qtySelect{
+text-align: center;
+}
+/* .product-p{
+  white-space: nowrap;
+} */
